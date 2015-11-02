@@ -11,22 +11,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151030160414) do
+ActiveRecord::Schema.define(version: 20151102155742) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "users", force: :cascade do |t|
+  create_table "code_schools", force: :cascade do |t|
     t.string   "name"
-    t.string   "email"
-    t.integer  "age"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-    t.string   "average_score"
-    t.string   "dinosaur"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
+  create_table "users", force: :cascade do |t|
+    t.string   "name"
+    t.string   "email",          null: false
+    t.integer  "age"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.string   "average_score"
+    t.string   "dinosaur"
+    t.integer  "code_school_id"
+  end
+
+  add_index "users", ["code_school_id"], name: "index_users_on_code_school_id", using: :btree
   add_index "users", ["dinosaur"], name: "index_users_on_dinosaur", using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
 
+  add_foreign_key "users", "code_schools"
 end
