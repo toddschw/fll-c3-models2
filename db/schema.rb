@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151029193540) do
+ActiveRecord::Schema.define(version: 20151030160414) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,9 +20,13 @@ ActiveRecord::Schema.define(version: 20151029193540) do
     t.string   "name"
     t.string   "email"
     t.integer  "age"
-    t.decimal  "average_score"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.string   "average_score"
+    t.string   "dinosaur"
   end
+
+  add_index "users", ["dinosaur"], name: "index_users_on_dinosaur", using: :btree
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
 
 end
