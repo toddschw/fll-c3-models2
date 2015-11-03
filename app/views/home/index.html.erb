@@ -1,0 +1,33 @@
+<h1>Welcome Home!</h1>
+
+<p>Helpers</p>
+<%= image_tag "rails.png" %>
+
+<h4>asset helpers</h4>
+<%= image_url "rails.png" %>
+<%= javascript_url "application" %>
+<%= stylesheet_url "application" %>
+
+<%= image_path "rails.png" %>
+<%= javascript_path "application" %>
+<%= stylesheet_path "application" %>
+
+<%= image_tag "rails.png" %>
+<%= javascript_include_tag "application" %>
+<%= stylesheet_link_tag "application" %>
+
+<%= Time.now %>
+
+<%# NOOOOOOOOOO! User.take.email %>
+<%# @user.email %>
+
+<h3>Active users</h3>
+<%= render @users %>
+
+<%= @hello %>
+
+<p>HTML Comment</p>
+<!-- comment -->
+
+<p>erb Comment</p>
+<%# comment %>
