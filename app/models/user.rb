@@ -3,6 +3,8 @@ class User < ActiveRecord::Base
   has_one :profile
   has_many :projects
 
+# We currently need only these three scopes
+# TODO: Write more as needed.
   scope :active, -> { where(active: true) }
   scope :cohort, ->(number) { where(cohort: number) }
   scope :active_cohort, ->(number) { active.cohort(number) }
