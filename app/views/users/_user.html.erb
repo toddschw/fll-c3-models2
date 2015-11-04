@@ -1,4 +1,14 @@
 <%# debug user %>
 <%= div_for(user) do %>
-Email: <%= user.email %>, Name: <%= user.name %>
+  Email: <%= user.email %><br>
+  Name: <%= user.name %>
+  <%= form_for user do |f| %>
+    <div class="field">
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </div>
+    <div class="actions">
+      <%= f.submit "Update #{user.name}" %> 
+    </div>
+  <% end %>
 <% end %>  
