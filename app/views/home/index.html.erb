@@ -1,33 +1,24 @@
 <h1>Welcome Home!</h1>
 
-<p>Helpers</p>
-<%= image_tag "rails.png" %>
 
-<h4>asset helpers</h4>
-<%= image_url "rails.png" %>
-<%= javascript_url "application" %>
-<%= stylesheet_url "application" %>
+<h3>Form Helpers</h3>
 
-<%= image_path "rails.png" %>
-<%= javascript_path "application" %>
-<%= stylesheet_path "application" %>
+<%= pluralize 2, "person" %>
+<%= truncate("this, that, the other", length: 19) { link_to "Cont.", "#" }  %>
 
-<%= image_tag "rails.png" %>
-<%= javascript_include_tag "application" %>
-<%= stylesheet_link_tag "application" %>
+<h2>Hello World</h2>
+<%= form_tag '/search' do %>
+  <%= search_field_tag :term %><%= submit_tag 'Search' %><br>
+  
+  <%= label_tag :text_field, "Text Field" %>
+  <%= text_field_tag :text_field %><br>
+  
+  <%= label_tag :active, 'Active' %>
+  <%= check_box_tag :active %><br>
 
-<%= Time.now %>
-
-<%# NOOOOOOOOOO! User.take.email %>
-<%# @user.email %>
-
-<h3>Active users</h3>
-<%= render @users %>
-
-<%= @hello %>
-
-<p>HTML Comment</p>
-<!-- comment -->
-
-<p>erb Comment</p>
-<%# comment %>
+  <%= label_tag :cohort, 'Cohort' %>
+  <%= select_tag :cohort, options_for_select(1..3) %><br>
+  
+  <%= label_tag :cohort2, 'Cohort' %>
+  <%= number_field_tag :cohort2, nil, in: (1..3) %><br>
+<% end %>
