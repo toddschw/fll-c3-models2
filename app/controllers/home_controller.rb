@@ -1,26 +1,31 @@
 class HomeController < ApplicationController
+  around_action :log
+
   def index
-    # @school = CodeSchool.find_by name: params[:school]
-    # render plain: params.to_json
-    #render plain: params[:user][:name] == params["user"]["name"]
-   # session[:school] = "wyncode"
-    # session.delete :school
-    message = if session[:id] == 1
-                'logged in'
-              else
-                'logged out'
-              end
-    render plain: message
+    @message = "You are currently "
+    @message += if session[:id] == 1
+                  'logged in'
+                else
+                  'logged out'
+                end
+    #flash.now[:error] = "There is an error right now."
+  end
+
+  def redirector
+   # flash.keep
+    # do some fancy special stuff here
+    redirect_to root_path
   end
 
   def login
     session[:id] = 1
-    redirect_to root_path
+    redirect_to :redirector, notice: "You have just logged in."
+    # redirect_to root_path, flash: { school: "is in" }
   end
 
   def logout
     session.delete :id
-    redirect_to root_path
+    redirect_to :redirector, notice: "You have just logged out."
   end
 
   def list
@@ -29,6 +34,15 @@ class HomeController < ApplicationController
 
   def post
     render plain: params.to_json
+  end
+
+  private
+
+  def log
+    puts "Starting action"
+    t = Time.now
+    yield
+    puts "Stopping action: #{Time.now - t}"
   end
 end
 __END__

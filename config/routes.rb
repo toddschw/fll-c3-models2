@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   get "/login", to: "home#login"
   get "/logout", to: "home#logout"
 
+  get 'redirect', to: "home#redirector", as: :redirector
+
   # get "/wyncode", to: "home#index", school: "Wyncode"
   # get "/flatiron", to: "home#index", school: "Flatiron"
 

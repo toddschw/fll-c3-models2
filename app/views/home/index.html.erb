@@ -1,7 +1,11 @@
 <h1>Welcome Home!</h1>
 
-<%= form_tag post_path do %>
-  <%= submit_tag %>
+<% flash.each do |name, msg| %>
+  <%= content_tag :div, msg, id: name %>
 <% end %>
 
-<%# render @users %>
+<p>Notice: <%= notice %></p>
+
+<p>Message: <%= @message %></p>
+
+<p>Session: <%= session.to_hash %></p>
