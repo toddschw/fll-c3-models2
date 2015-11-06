@@ -1,7 +1,22 @@
 Rails.application.routes.draw do
   resources :users
-  root 'home#index'
+  root 'home#index', school: "Wyncode"
+  get "/home/(:path)", to: "home#index", special: true
   get '/list', to: "home#list"
+
+  get "/login", to: "home#login"
+  get "/logout", to: "home#logout"
+
+  # get "/wyncode", to: "home#index", school: "Wyncode"
+  # get "/flatiron", to: "home#index", school: "Flatiron"
+
+  # Arity is different!
+  # Maybe a splat (*) behind the scenes?
+  # post "/post" => "home#post"
+  # post({"/post" => "home#post"})
+  post "/post", to: "home#post"
+  # post("/post", { to: "home#post" })
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

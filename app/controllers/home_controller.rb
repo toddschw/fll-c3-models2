@@ -1,41 +1,47 @@
 class HomeController < ApplicationController
-
-  # layout "simple"
-  layout :choose_random_layout, only: :index
-  # layout :choose_random_layout, except: :index
-
   def index
-    # head 400
-    head :no_content
-    # redirect_to users_path
-    # redirect_to users_url
-    # redirect_to :back
-    # @users = User.all
-    # render :index
-    #render nothing: true
-    # These are equivalent:
-    # render :list
-    # render action: :list
-    # render "list"
-    # Rendering views associated with other controllers
-    # render "users/index"
-    # @drug = "714"
-    # render file: "/Users/damon/Desktop/fll-c3/models2/a_file"
-    # render plain: "ok"
-    # render inline: "<%= Time.now %>"
-    # render json: @users.first
-    # render xml: @users.first
-    # render :index, layout: false
-    # render :index, layout: "simple"
-    # puts "Render does not exit the method"
-    # puts "So this will STILL RUN."
-    # # render plain: "You did something stupid", status: 400
-    # render plain: "You did something stupid", status: :bad_request
+    # @school = CodeSchool.find_by name: params[:school]
+    # render plain: params.to_json
+    #render plain: params[:user][:name] == params["user"]["name"]
+   # session[:school] = "wyncode"
+    # session.delete :school
+    message = if session[:id] == 1
+                'logged in'
+              else
+                'logged out'
+              end
+    render plain: message
   end
 
-  private
+  def login
+    session[:id] = 1
+    redirect_to root_path
+  end
 
-  def choose_random_layout
-    rand() > 0.5 ? "simple" : false
+  def logout
+    session.delete :id
+    redirect_to root_path
+  end
+
+  def list
+    @users = User.all
+  end
+
+  def post
+    render plain: params.to_json
   end
 end
+__END__
+https://www.google.com/search
+?
+q=gws_rd%3Dssl&biw=960
+&bih=504
+&tbm=isch
+&source=lnms
+&sa=X
+&ved=0CJIBEPwFKAFqFQoTCOya2uKX_MgCFcRWHgod17cBwA
+
+http://localhost:3000/?person[name]=Damon&person[email]=damon@wyncode.co
+
+http://localhost:3000/?arr[]=1&arr[]=2
+
